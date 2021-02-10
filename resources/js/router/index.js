@@ -2,6 +2,8 @@ import Home from '../Views/Home';
 import About from '../Views/About';
 import Contact from '../Views/Contact';
 
+import NewPost from '../Views/notes/Create';
+
 
 export default {
     mode: 'history',
@@ -22,7 +24,16 @@ export default {
             path: '/contact',
             name: 'page.contact',
             component: Contact
+        },
+
+
+        // notes
+        {
+            path: '/notes/create',
+            name: 'notes.create',
+            component: NewPost
         }
+
 
     ]
 }

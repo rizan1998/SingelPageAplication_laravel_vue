@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('app');
-});
+// agar tidak error route disini menggunaka regex
+// Route::get('/{any}', function () {
+//     return view('app');
+// })->where('any', '.*');
+
+route::view('/{any}', 'app')->where('any', '.*');
