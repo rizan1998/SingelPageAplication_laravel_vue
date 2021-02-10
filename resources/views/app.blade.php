@@ -15,9 +15,11 @@
     <body >
        <div id="parsinta">
            <navigation></navigation>
-           <div class="py-4">
-               <router-view></router-view>
-           </div>
+          
+            <div class="px-5 mt-3">
+                <router-view></router-view>
+            </div>  
+          
        </div>
 
        {{-- vue js --}}
