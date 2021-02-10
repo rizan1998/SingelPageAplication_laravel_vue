@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\notes\NoteController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +21,6 @@ use Illuminate\Support\Facades\Route;
 // Route::group(['middleware' => ['posts']], function () {
 // });
 
-Route::group(['prefix' => 'posts'], function () {
-    Route::Post('create-new-post', [PostController::class, 'store']);
+Route::group(['prefix' => 'notes'], function () {
+    Route::Post('create-new-note', [NoteController::class, 'store']);
 });
