@@ -18,6 +18,7 @@ window.Vue = require('vue').default; //vue app
 import VueRouter from 'vue-router'; //vue router
 
 Vue.use(VueRouter); //use vue router
+import routes from './router/index'; //import file router
 
 
 Vue.component('navigation', require('./components/Navigation.vue').default);
@@ -25,4 +26,6 @@ Vue.component('navigation', require('./components/Navigation.vue').default);
 
 const app = new Vue({
     el: '#parsinta',
+    router: new VueRouter(routes),
+
 });
