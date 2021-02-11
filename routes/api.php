@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'notes'], function () {
     Route::Post('create-new-note', [NoteController::class, 'store']);
+    Route::get('', [NoteController::class, 'index']);
 });
 
 Route::group(['prefix' => 'subjects'], function () {

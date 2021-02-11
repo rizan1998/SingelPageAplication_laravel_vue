@@ -5,6 +5,7 @@ namespace App\Http\Controllers\notes;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Note, Subject};
+use Illuminate\Auth\Events\Validated;
 
 class NoteController extends Controller
 {
@@ -15,7 +16,7 @@ class NoteController extends Controller
      */
     public function index()
     {
-        //
+        return Note::latest()->get();
     }
 
     /**
@@ -37,7 +38,14 @@ class NoteController extends Controller
 
     public function store()
     {
-        // dd('hai');
+        request()->validate(
+            [
+                'subject' => 'required',
+                'title' => 'required|min:3',
+                'description' => 'required'
+            ]
+        );
+
         $subject = Subject::findOrFail(request('subject'));
         //return $subject; jika hanya find maka responsenya akan 200 tanpa menampilkan data apa2
         $note = Note::create([

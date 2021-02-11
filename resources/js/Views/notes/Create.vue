@@ -16,6 +16,9 @@
                   id="title"
                   class="form-control"
                 />
+                <div v-if="theErrors.title" class="mt-2 text-danger">
+                  {{ theErrors.title[0] }}
+                </div>
               </div>
               <div class="form-group">
                 <label for="subject">Subject</label>
@@ -29,6 +32,9 @@
                     {{ sub.name }}
                   </option>
                 </select>
+                <div v-if="theErrors.subject" class="mt-2 text-danger">
+                  {{ theErrors.subject[0] }}
+                </div>
               </div>
               <div class="form-group">
                 <label for="description">Description</label>
@@ -39,6 +45,9 @@
                   rows="5"
                   cols="10"
                 ></textarea>
+                <div v-if="theErrors.description" class="mt-2 text-danger">
+                  {{ theErrors.description[0] }}
+                </div>
               </div>
               <button type="submit" class="btn btn-primary">
                 Create Note !
@@ -61,13 +70,7 @@ export default {
         description: "",
       },
       subjects: [],
-      contohSubjects: [
-        { id: 1, nama: "vuejs" },
-        {
-          id: 2,
-          nama: "laravel",
-        },
-      ],
+      theErrors: [],
     };
   },
 
@@ -85,9 +88,34 @@ export default {
       }
     },
     async store() {
-      let response = await axios.post("/api/notes/create-new-note", this.form);
-      if (response.status == 200) {
-        console.log(response.data);
+      try {
+        let response = await axios.post(
+          "/api/notes/create-new-note",
+          this.form
+        );
+        if (response.status == 200) {
+          console.log(response.data);
+          // this.form = [];
+          this.form.title = "";
+          this.form.subject = "";
+          this.form.description = "";
+          this.theErrors = [];
+          // this.$toast.open({
+          //   message: response.data.message,
+          //   position: top,
+          // });
+          Vue.$toast.success(response.data.message, {
+            // override the global option
+            position: "top-right",
+          });
+        }
+      } catch (e) {
+        //console.log(e.response.data.errors);
+        Vue.$toast.error("somthing went wrong", {
+          // override the global option
+          position: "top-right",
+        });
+        this.theErrors = e.response.data.errors;
       }
     },
   },
