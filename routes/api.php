@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\notes\NoteController;
+use App\Http\Controllers\notes\{NoteController, SubjectController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +23,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'notes'], function () {
     Route::Post('create-new-note', [NoteController::class, 'store']);
+});
+
+Route::group(['prefix' => 'subjects'], function () {
+    Route::get('', [SubjectController::class, 'index']);
 });
