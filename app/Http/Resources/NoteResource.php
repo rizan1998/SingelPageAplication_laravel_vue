@@ -14,6 +14,16 @@ class NoteResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'subject' => $this->subject->name,
+            'description' => $this->description,
+            'subjectId' => $this->subject->id,
+            'publish' => $this->created_at->format('d F, Y'),
+            'publishHuman' => $this->created_at->diffForHumans(),
+            // sisipkan link untuk update resource
+            'updata-link' => route('note.show', $this->slug)
+        ];
     }
 }

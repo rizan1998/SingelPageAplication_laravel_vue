@@ -10,6 +10,15 @@ class Note extends Model
     use HasFactory;
     protected $guarded = [];
 
+    //ini metode key untuk old laravel
+    //jika tidak ingin menggunakan function getRouteKeyName
+    //maka pakai {namaPenampung:key} contoh {note:slug}
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
+
+
     public function subject()
     {
         return $this->belongsTo(Subject::class);

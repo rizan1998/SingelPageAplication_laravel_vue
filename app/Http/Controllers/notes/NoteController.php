@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\notes;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\NoteResource;
 use Illuminate\Http\Request;
 use App\Models\{Note, Subject};
 use Illuminate\Auth\Events\Validated;
@@ -16,7 +17,8 @@ class NoteController extends Controller
      */
     public function index()
     {
-        return Note::latest()->get();
+        $note = Note::with('subject')->latest()->get();
+        return NoteResource::collection($note);
     }
 
     /**
@@ -67,9 +69,12 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Note $note)
     {
         //
+        return new NoteResource(($note));
+        //bisa juga menggunakan make
+        // return NoteResouce::make($note);
     }
 
     /**
