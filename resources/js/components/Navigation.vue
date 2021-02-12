@@ -50,6 +50,9 @@
                   :to="{ name: 'notes.create' }"
                   >Create</router-link
                 >
+                <router-link class="dropdown-item" :to="{ name: 'notes.table' }"
+                  >Table of note</router-link
+                >
 
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>

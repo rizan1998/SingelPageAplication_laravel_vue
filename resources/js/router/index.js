@@ -3,6 +3,7 @@ import About from '../Views/About';
 import Contact from '../Views/Contact';
 
 import NewPost from '../Views/notes/Create';
+import TableOfNote from '../Views/notes/Table'
 
 
 export default {
@@ -32,6 +33,11 @@ export default {
             path: '/notes/create',
             name: 'notes.create',
             component: NewPost
+        },
+        {
+            path: '/notes/table',
+            name: 'notes.table',
+            component: TableOfNote
         }
 
 
