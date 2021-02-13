@@ -4,7 +4,7 @@ import Contact from '../Views/Contact';
 
 import NewPost from '../Views/notes/Create';
 import TableOfNote from '../Views/notes/Table'
-
+import ShowTheNote from '../Views/notes/Show';
 
 export default {
     mode: 'history',
@@ -38,6 +38,11 @@ export default {
             path: '/notes/table',
             name: 'notes.table',
             component: TableOfNote
+        },
+        {
+            path: '/notes/:noteSlug/table',
+            name: 'notes.show',
+            component: ShowTheNote
         }
 
 

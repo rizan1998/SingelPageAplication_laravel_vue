@@ -12,7 +12,13 @@
           </thead>
           <tbody>
             <tr v-for="note of notes" :key="note.id">
-              <td>{{ note.title }}</td>
+              <td>
+                <!-- noteSlug samakan dengan dirouter -->
+                <router-link
+                  :to="{ name: 'notes.show', params: { noteSlug: note.slug } }"
+                  >{{ note.title }}</router-link
+                >
+              </td>
               <td>{{ note.subject }}</td>
               <td>{{ note.publish }}</td>
             </tr>
