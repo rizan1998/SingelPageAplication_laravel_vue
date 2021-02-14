@@ -95,9 +95,27 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Note $note)
     {
-        //
+        // return $note;
+        request()->validate(
+            [
+                'subject' => 'required|numeric',
+                'title' => 'required|min:3',
+                'description' => 'required'
+            ]
+        );
+        $subject = Subject::findOrFail(request('subject'));
+        $note->update([
+            'subject_id' => $subject->id,
+            'title' => request('title'),
+            'description' => request('description')
+        ]);
+
+        return response()->json([
+            'message' => 'your note was updated',
+            'note' => $note
+        ]);
     }
 
     /**

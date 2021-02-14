@@ -1,13 +1,14 @@
 <template>
   <div class="note-table">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <div class="table">
           <thead>
             <tr>
               <th>title</th>
               <th>subject</th>
               <th>published</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -21,6 +22,13 @@
               </td>
               <td>{{ note.subject }}</td>
               <td>{{ note.publish }}</td>
+              <td>
+                <router-link
+                  class="btn btn-warning btn-sm"
+                  :to="{ name: 'notes.edit', params: { noteSlug: note.slug } }"
+                  >Edit</router-link
+                >
+              </td>
             </tr>
           </tbody>
         </div>
