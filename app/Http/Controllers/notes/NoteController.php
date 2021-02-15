@@ -127,7 +127,7 @@ class NoteController extends Controller
     public function destroy(Note $note)
     {
         // return $note;
-        // $note->delete();
+        $note->delete();
         return response()->json([
             'message' => 'Your Note Was deleted',
             'note' => $note

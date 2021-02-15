@@ -2113,8 +2113,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["endpoint"],
+  props: ["endpoint", "btn", "btnlarge"],
   methods: {
     destroyNote: function destroyNote() {
       var _this = this;
@@ -2455,6 +2461,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _Delete__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Delete */ "./resources/js/Views/notes/Delete.vue");
+//
+//
+//
+//
 //
 //
 //
@@ -23019,9 +23029,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("button", { ref: "deleteNote", on: { click: _vm.destroyNote } }, [
-    _vm._v("Delete")
-  ])
+  return _c(
+    "button",
+    {
+      ref: "deleteNote",
+      class: "btn btn-" + _vm.btn + " btn-" + _vm.btnlarge,
+      on: { click: _vm.destroyNote }
+    },
+    [_vm._v("\n  Delete\n")]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -23326,7 +23342,15 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "td",
-                  [_c("DeleteNote", { attrs: { endpoint: note.slug } })],
+                  [
+                    _c("DeleteNote", {
+                      attrs: {
+                        endpoint: note.slug,
+                        btnlarge: "sm",
+                        btn: "danger"
+                      }
+                    })
+                  ],
                   1
                 )
               ])

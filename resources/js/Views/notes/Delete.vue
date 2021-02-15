@@ -1,10 +1,16 @@
 <template>
-  <button ref="deleteNote" @click="destroyNote">Delete</button>
+  <button
+    ref="deleteNote"
+    :class="'btn btn-' + btn + ' btn-' + btnlarge"
+    @click="destroyNote"
+  >
+    Delete
+  </button>
 </template>
 
 <script>
 export default {
-  props: ["endpoint"],
+  props: ["endpoint", "btn", "btnlarge"],
   methods: {
     async destroyNote() {
       //   console.log("Deleted");

@@ -30,7 +30,11 @@
                 >
               </td>
               <td>
-                <DeleteNote :endpoint="note.slug" />
+                <DeleteNote
+                  :endpoint="note.slug"
+                  :btnlarge="'sm'"
+                  :btn="'danger'"
+                />
               </td>
             </tr>
           </tbody>
