@@ -26,6 +26,7 @@ Route::group(['prefix' => 'notes'], function () {
     Route::get('', [NoteController::class, 'index']);
     Route::get('{note:slug}', [NoteController::class, 'show'])->name('note.show');
     Route::patch('{note:slug}/edit', [NoteController::class, 'update']);
+    Route::delete('{note:slug}/delete', [NoteController::class, 'destroy']);
 });
 
 Route::group(['prefix' => 'subjects'], function () {

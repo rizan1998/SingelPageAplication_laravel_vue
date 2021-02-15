@@ -29,6 +29,9 @@
                   >Edit</router-link
                 >
               </td>
+              <td>
+                <DeleteNote :endpoint="note.slug" />
+              </td>
             </tr>
           </tbody>
         </div>
@@ -38,7 +41,12 @@
 </template>
 
 <script>
+import btn_deleteNote from "./Delete";
+
 export default {
+  components: {
+    DeleteNote: btn_deleteNote,
+  },
   data() {
     return {
       notes: [],

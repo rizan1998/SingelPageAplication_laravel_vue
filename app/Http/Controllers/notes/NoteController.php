@@ -124,8 +124,13 @@ class NoteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Note $note)
     {
-        //
+        // return $note;
+        // $note->delete();
+        return response()->json([
+            'message' => 'Your Note Was deleted',
+            'note' => $note
+        ]);
     }
 }
