@@ -1987,6 +1987,268 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -1996,7 +2258,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         description: ""
       },
       subjects: [],
-      theErrors: []
+      theErrors: [],
+      loadingSave: false
     };
   },
   mounted: function mounted() {
@@ -2040,11 +2303,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.prev = 0;
-                _context2.next = 3;
+                _this2.loadingSave = true;
+                _context2.prev = 1;
+                _context2.next = 4;
                 return axios.post("/api/notes/create-new-note", _this2.form);
 
-              case 3:
+              case 4:
                 response = _context2.sent;
 
                 if (response.status == 200) {
@@ -2058,31 +2322,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   //   position: top,
                   // });
 
+                  _this2.loadingSave = false;
                   Vue.$toast.success(response.data.message, {
                     // override the global option
                     position: "top-right"
                   });
                 }
 
-                _context2.next = 11;
+                _context2.next = 13;
                 break;
 
-              case 7:
-                _context2.prev = 7;
-                _context2.t0 = _context2["catch"](0);
-                //console.log(e.response.data.errors);
+              case 8:
+                _context2.prev = 8;
+                _context2.t0 = _context2["catch"](1);
+                _this2.loadingSave = false; //console.log(e.response.data.errors);
+
                 Vue.$toast.error("somthing went wrong", {
                   // override the global option
                   position: "top-right"
                 });
                 _this2.theErrors = _context2.t0.response.data.errors;
 
-              case 11:
+              case 13:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, null, [[0, 7]]);
+        }, _callee2, null, [[1, 8]]);
       }))();
     }
   }
@@ -2266,13 +2532,275 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       form: [],
       subjects: [],
       theErrors: [],
-      selected: ""
+      selected: "",
+      loadingSave: false
     };
   },
   mounted: function mounted() {
@@ -2346,12 +2874,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                _this3.loadingSave = true;
                 _this3.form["subject"] = _this3.selected || _this3.form.subjectId;
                 console.log(_this3.form);
-                _context3.next = 4;
+                _context3.next = 5;
                 return axios.patch("/api/notes/".concat(_this3.$route.params.noteSlug, "/edit"), _this3.form);
 
-              case 4:
+              case 5:
                 response = _context3.sent;
 
                 if (response.status == 200) {
@@ -2364,7 +2893,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this3.$router.push("/notes/table");
                 }
 
-              case 6:
+              case 7:
               case "end":
                 return _context3.stop();
             }
@@ -22986,8 +23515,466 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("\n              Create Note !\n            ")]
+                  {
+                    staticClass: "btn btn-primary -flex align-items-center",
+                    attrs: { type: "submit" }
+                  },
+                  [
+                    _vm._v("\n              Create Note !\n\n              "),
+                    _vm.loadingSave
+                      ? [
+                          _c(
+                            "svg",
+                            {
+                              staticStyle: {
+                                margin: "auto",
+                                background: "none",
+                                display: "inline",
+                                "shape-rendering": "auto"
+                              },
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                                width: "30px",
+                                height: "30px",
+                                viewBox: "0 0 100 100",
+                                preserveAspectRatio: "xMidYMid"
+                              }
+                            },
+                            [
+                              _c(
+                                "g",
+                                { attrs: { transform: "translate(80,50)" } },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(0)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "1"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.875s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.875s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(71.21320343559643,71.21320343559643)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(45)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.875"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.75s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.75s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                { attrs: { transform: "translate(50,80)" } },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(90)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.75"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.625s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.625s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(28.786796564403577,71.21320343559643)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(135)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.625"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.5s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.5s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform: "translate(20,50.00000000000001)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(180)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.5"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.375s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.375s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(28.78679656440357,28.786796564403577)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(225)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.375"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.25s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.25s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform: "translate(49.99999999999999,20)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(270)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.25"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.125s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.125s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(71.21320343559643,28.78679656440357)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(315)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.125"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "0s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "0s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      : _vm._e()
+                  ],
+                  2
                 )
               ]
             )
@@ -23209,8 +24196,466 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "button",
-                  { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-                  [_vm._v("\n              Create Note !\n            ")]
+                  {
+                    staticClass: "btn btn-primary d-flex align-items-center",
+                    attrs: { type: "submit" }
+                  },
+                  [
+                    _vm._v("\n              update now\n              "),
+                    _vm.loadingSave
+                      ? [
+                          _c(
+                            "svg",
+                            {
+                              staticStyle: {
+                                margin: "auto",
+                                background: "none",
+                                display: "block",
+                                "shape-rendering": "auto"
+                              },
+                              attrs: {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                                width: "30px",
+                                height: "30px",
+                                viewBox: "0 0 100 100",
+                                preserveAspectRatio: "xMidYMid"
+                              }
+                            },
+                            [
+                              _c(
+                                "g",
+                                { attrs: { transform: "translate(80,50)" } },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(0)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "1"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.875s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.875s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(71.21320343559643,71.21320343559643)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(45)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.875"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.75s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.75s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                { attrs: { transform: "translate(50,80)" } },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(90)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.75"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.625s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.625s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(28.786796564403577,71.21320343559643)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(135)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.625"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.5s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.5s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform: "translate(20,50.00000000000001)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(180)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.5"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.375s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.375s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(28.78679656440357,28.786796564403577)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(225)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.375"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.25s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.25s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform: "translate(49.99999999999999,20)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(270)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.25"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "-0.125s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "-0.125s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "g",
+                                {
+                                  attrs: {
+                                    transform:
+                                      "translate(71.21320343559643,28.78679656440357)"
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "g",
+                                    { attrs: { transform: "rotate(315)" } },
+                                    [
+                                      _c(
+                                        "circle",
+                                        {
+                                          attrs: {
+                                            cx: "0",
+                                            cy: "0",
+                                            r: "6",
+                                            fill: "#1d3f72",
+                                            "fill-opacity": "0.125"
+                                          }
+                                        },
+                                        [
+                                          _c("animateTransform", {
+                                            attrs: {
+                                              attributeName: "transform",
+                                              type: "scale",
+                                              begin: "0s",
+                                              values: "1.5 1.5;1 1",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c("animate", {
+                                            attrs: {
+                                              attributeName: "fill-opacity",
+                                              keyTimes: "0;1",
+                                              dur: "1s",
+                                              repeatCount: "indefinite",
+                                              values: "1;0",
+                                              begin: "0s"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ]
+                      : _vm._e()
+                  ],
+                  2
                 )
               ]
             )

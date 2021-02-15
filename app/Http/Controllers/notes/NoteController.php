@@ -40,6 +40,8 @@ class NoteController extends Controller
 
     public function store()
     {
+        // supaya servernya berhenti 1 detik
+        sleep(1);
         request()->validate(
             [
                 'subject' => 'required',
@@ -97,6 +99,8 @@ class NoteController extends Controller
      */
     public function update(Note $note)
     {
+        // sleep server 1 detik
+        sleep(1);
         // return $note;
         request()->validate(
             [
