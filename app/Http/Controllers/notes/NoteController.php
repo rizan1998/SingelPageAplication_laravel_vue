@@ -38,7 +38,7 @@ class NoteController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store()
+    public function store(Request $request)
     {
         // supaya servernya berhenti 1 detik
         sleep(1);
@@ -46,18 +46,25 @@ class NoteController extends Controller
             [
                 'subject' => 'required',
                 'title' => 'required|min:3',
-                'description' => 'required'
+                'description' => 'required',
+                'picture' => 'required|mimes:jpg,jpeg,png,csv,txt,xlx,xls,pdf'
             ]
         );
 
-        $subject = Subject::findOrFail(request('subject'));
-        //return $subject; jika hanya find maka responsenya akan 200 tanpa menampilkan data apa2
-        $note = Note::create([
-            'subject_id' => $subject->id,
-            'title' => request('title'),
-            'slug' => \Str::slug(request('title')),
-            'description' => request('description')
-        ]);
+        if ($request->file()) {
+            $file_name = time() . '_' . $request->file('picture')->getClientOriginalName();
+            $file_path = $request->file('picture')->storeAs('uploads', $file_name, 'public');
+            $subject = Subject::findOrFail(request('subject'));
+            //return $subject; jika hanya find maka responsenya akan 200 tanpa menampilkan data apa2
+            $note = Note::create([
+                'subject_id' => $subject->id,
+                'title' => request('title'),
+                'slug' => \Str::slug(request('title')),
+                'description' => request('description'),
+                'image_name' => time() . '_' . $request->file('picture')->getClientOriginalName(),
+                'path' => '/storage/' . $file_path,
+            ]);
+        }
 
         return response()->json([
             'message' => 'your note was created',
@@ -106,9 +113,11 @@ class NoteController extends Controller
             [
                 'subject' => 'required|numeric',
                 'title' => 'required|min:3',
-                'description' => 'required'
+                'description' => 'required',
+
             ]
         );
+
         $subject = Subject::findOrFail(request('subject'));
         $note->update([
             'subject_id' => $subject->id,

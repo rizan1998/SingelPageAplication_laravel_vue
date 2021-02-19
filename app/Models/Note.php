@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Note extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    protected $guarded = ['id'];
 
     //ini metode key untuk old laravel
     //jika tidak ingin menggunakan function getRouteKeyName
