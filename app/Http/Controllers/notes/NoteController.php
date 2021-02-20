@@ -19,6 +19,8 @@ class NoteController extends Controller
     {
         $note = Note::with('subject')->latest()->get();
         return NoteResource::collection($note);
+        // $note = Note::paginate(5)->toArray();
+        // return array_reverse($note);
     }
 
     /**
